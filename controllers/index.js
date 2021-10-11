@@ -25,33 +25,28 @@ const addProduct = async (req, res) => {
 
 const removeProduct = async (req, res) => {
   try {
-      const id = req.params.Id;
+      const id = req.params.productId;
       const deleted = await Product.findByIdAndDelete(id)
       if (deleted) {
           return res.status(200).send("Product Deleted");
       }
-      throw new Error("Expense not found");
-      
+      throw new Error("Product not found");
   } catch (error) {
       return res.status(500).send(error.message);
   }
 }
 
 const updateProduct = async (req, res) => {
-  try {
-      const { id } = req.params;
-      await Product.findByIdAndUpdate(id, req.body, { new: true }, (err, product) => {
-          if (err) {
-              res.status(500).send(err);
-          }
-          if (!product) {
-              res.status(500).send('Plant not found!');
-          }
-          return res.status(200).json(product);
-      })
-  } catch (error) {
-      return res.status(500).send(error.message);
-  }
+  const id = req.params.productId;
+  await Product.findByIdAndUpdate(id, req.body, { new: true }, (err, product) => {
+      if (err) {
+          res.status(500).send(err);
+      }
+      if (!product) {
+          res.status(500).send('Product not found!');
+      }
+      return res.status(200).json(product);
+  })
 }
 
 // const getCart = async (req, res) => {
@@ -69,10 +64,11 @@ const updateProduct = async (req, res) => {
 
 // const addToCart = async (req, res) => {
 //   try {
-//     const payment = await new Payment(req.body)
-//     await payment.save()
+//     const id = req.params.productId;
+//     const product = await Product.findById(id)
+//     User.findById(id).cart.push(product)
 //     return res.status(201).json({
-//       payment
+//       Cart
 //     })
 //   } catch (error) {
 //     return res.status(500).json({ error: error.message })
@@ -96,7 +92,5 @@ module.exports = {
   addProduct,
   removeProduct,
   updateProduct,
-  getCart,
-  addToCart,
   addUser
 }

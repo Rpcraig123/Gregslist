@@ -6,7 +6,7 @@ const User = new Schema(
     last_name: { type: String, required: true },
     email: { type: String, required: true },
     products: [{ type: Schema.Types.ObjectId, ref: 'products' }],
-    cart: [{ type: Schema.Types.ObjectId, ref: 'cart' }]
+    cart: [{ type: Schema.Types.ObjectId, ref: 'products' }]
   },
   { timestamps: true }
 )
