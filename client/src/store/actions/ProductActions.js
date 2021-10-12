@@ -5,10 +5,7 @@ export const fetchProducts = () => {
   return async (dispatch) => {
     try {
       const products = await GetProducts()
-      dispatch({
-        type: GET_PRODUCTS,
-        payload: products
-      })
+      dispatch({ type: GET_PRODUCTS, payload: products })
     } catch (error) {
       throw error
     }
