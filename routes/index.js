@@ -14,6 +14,6 @@ router.put('/update-product/:productId', controllers.updateProduct)
 
 // router.post('/new-product-cart/:productId', controllers.addToCart)
 
-router.post('/new-user', controllers.addUser)
+// router.post('/new-user', controllers.addUser)
 
 module.exports = router

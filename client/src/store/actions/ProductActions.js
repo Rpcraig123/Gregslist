@@ -1,5 +1,5 @@
 import { GetProducts } from '../../services/ProductService'
-import { ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, GET_PRODUCTS } from "../types";
+import { GET_PRODUCTS } from "../types";
 
 export const fetchProducts = () => {
   return async (dispatch) => {
