@@ -1,18 +1,18 @@
 import Nav from './components/Nav';
-import Products from './components/Products';
-// import { Switch, Route} from 'react-router-dom';
-// import Home from './pages/Home'
-// import Cart from './pages/Cart'
+import { Switch, Route} from 'react-router-dom';
+import Home from './pages/Home'
+import Cart from './pages/Cart'
+import SellPage from './pages/SellPage'
 
 function App() {
   return (
     <div className="App">
       <Nav />
-      <Products />
-      {/* <Switch>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/cart" component={Cart} />
-      </Switch> */}
+        <Route path="/sell" component={SellPage} />
+      </Switch>
     </div>
   );
 }

@@ -36,6 +36,9 @@ function Navbar() {
             <Link to="/" className={classes.link}>
               Home
             </Link>
+            <Link to="/sell" className={classes.link}>
+              Sell Something
+            </Link>
             <Link to="/cart" className={classes.link}>
               Cart
             </Link>
