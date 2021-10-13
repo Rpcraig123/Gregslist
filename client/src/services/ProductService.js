@@ -8,3 +8,12 @@ export const GetProducts = async () => {
     throw error
   }
 }
+
+export const PostProducts = async (newProduct) => {
+  try {
+    const res = await Client.post('/new-product', newProduct)
+    return res
+  } catch (error) {
+    throw error
+  }
+}

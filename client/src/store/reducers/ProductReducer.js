@@ -1,7 +1,12 @@
-import { GET_PRODUCTS } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT } from "../types";
 
 const defaultState = {
-  products: []
+  products: [],
+  newProduct: {
+    title: ``,
+    description: ``,
+    price: null
+  }
   // productsLoading: '' // Should be type enum('Loading', 'Loaded', 'Inactive')
 }
 
@@ -11,6 +16,8 @@ const productReducer = (state = defaultState, action) => {
     //   return { ...state, productsLoading: action.payload }
     case GET_PRODUCTS:
       return { ...state, products: action.payload }
+    case ADD_PRODUCT:
+      return { ...state, newProduct: action.payload }
     default:
       return { ...state }
   }

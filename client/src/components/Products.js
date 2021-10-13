@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Button from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const mapStateToProps = ( productState ) => ({
   ...productState
@@ -58,7 +58,9 @@ const Products = (props) => {
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
-              <Button size="small">Add to Cart</Button>
+              <IconButton color="primary" aria-label="add to shopping cart">
+                <AddShoppingCartIcon />
+              </IconButton>
             </CardActions>
           </Card>
           // <h1 key={product._id}>Product Name: {product.title}</h1>
