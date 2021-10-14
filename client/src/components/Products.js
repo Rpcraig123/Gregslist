@@ -33,13 +33,26 @@ const mapDispatchToProps = (dispatch) => {
 const Products = (props) => {
   
   const [request, changeIt] = useState(false)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
 
-  const handleOpen = () => {
+  const handleOpen = (title, description, price) => {
     setOpen(true);
+    setTitle(title);
+    setDescription(description);
+    setPrice(price);
+    // const children = document.querySelector("body").children
+    const modals = document.querySelectorAll("div")
+    console.log(modals)
+    // for (let i = 0; i < children.length; i++) {
+    //   console.log(children[i])
+    //   if (children[i].className === 'MuiModal-root.css-79ws1d-MuiModal-root') {
+    //     console.log('modal found')
+    //     children.style.display = 'none'
+    //   }
+    // } 
   };
 
   const handleClose = () => {
@@ -82,7 +95,7 @@ const Products = (props) => {
   };
 
   return (
-    <div>
+    <div className="product-cards">
       {props.productState.products.products ? (
         props.productState.products.products.map((product) => (
           <Card sx={{ maxWidth: 350 }} key={product._id}>
@@ -105,7 +118,6 @@ const Products = (props) => {
               <Typography variant="body2" color="text.secondary">
                 {"Description: " + product.description}
               </Typography>
-              
             </CardContent>
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
@@ -116,12 +128,13 @@ const Products = (props) => {
               </IconButton>
               <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
               {/* <Button size="small" color="warning" variant="outlined" onClick={(e) => updateProduct(e, product.title, product.description, product.price, product._id)}>Update Item</Button> */}
-              <Button size="small" color="warning" variant="outlined" onClick={handleOpen}>Update Item</Button>
+              <Button size="small" color="warning" variant="outlined" onClick={() => handleOpen(product.title, product.description, product.price)}>Update Item</Button>
               <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
+                id={product._id}
               >
                 <Box sx={{ ...style, width: 400 }}>
                   <h2 id="parent-modal-title">Product Info</h2>
