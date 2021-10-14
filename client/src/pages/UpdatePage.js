@@ -32,9 +32,8 @@ const UpdatePage = (props) => {
       description,
       price
     };
-    console.log('product data', productData)
-    // props.updateProduct(newProduct);
-    // history.push("/");
+    props.updateProduct(productData, props.productState.productData.id);
+    history.push("/");
   };
   
   return (

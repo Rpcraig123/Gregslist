@@ -69,9 +69,10 @@ const Products = (props) => {
     changeIt(true)
   };
 
-  const saveProduct = (e, title, description, price) => {
+  const saveProduct = (e, title, description, price, id) => {
     e.preventDefault();
     let productData = {
+      id,
       title,
       description,
       price

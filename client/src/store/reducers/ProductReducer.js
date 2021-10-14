@@ -1,8 +1,9 @@
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, SAVE_PRODUCT } from "../types";
 
 const defaultState = {
   products: [],
   productData: {
+    id: null,
     title: '',
     description: '',
     price: 0

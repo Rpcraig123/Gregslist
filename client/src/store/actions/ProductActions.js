@@ -37,6 +37,7 @@ export const remProduct = (id) => {
 export const editProduct = (product, id) => {
   return async (dispatch) => {
     try {
+      console.log('editProduct id', id)
       const updated_product = await UpdateProduct(product, id)
       dispatch({ type: EDIT_PRODUCT, payload: updated_product })
     } catch (error) {
