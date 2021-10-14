@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT } from "../types";
 
 const defaultState = {
   products: [],
