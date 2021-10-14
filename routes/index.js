@@ -14,7 +14,7 @@ router.get('/cart/:userId', controllers.getCart)
 
 router.post('/new-product-cart/:productId', controllers.addToCart)
 
-// router.delete('/rem-product-cart/:productId', controllers.remCart)
+router.delete('/rem-product-cart/:productId', controllers.remCart)
 
 router.post('/new-user', controllers.addUser)
 

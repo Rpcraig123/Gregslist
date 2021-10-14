@@ -65,11 +65,25 @@ const addToCart = async (req, res) => {
   try {
     const productId = req.params.productId;
     const product = await Product.findById(productId)
-    console.log(product)
     const userId = req.body.user_id
     const user = await User.findById(userId)
-    console.log(user)
     user.cart.push(product)
+    await user.save()
+    return res.status(201).json({
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const remCart = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const userId = req.body.user_id
+    const user = await User.findById(userId)
+    const index = user.cart.indexOf(productId)
+    user.cart.splice(index, 1)
     await user.save()
     return res.status(201).json({
       user
@@ -102,6 +116,34 @@ const addUser = async (req, res) => {
   }
 }
 
+const addComment = async (req, res) => {
+  try {
+    const user = await new User(req.body)
+    await user.save()
+    return res.status(201).json({
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const remComment = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const userId = req.body.user_id
+    const user = await User.findById(userId)
+    const index = user.cart.indexOf(productId)
+    user.cart.splice(index, 1)
+    await user.save()
+    return res.status(201).json({
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   getAllProducts,
   addProduct,
@@ -109,6 +151,9 @@ module.exports = {
   updateProduct,
   getCart,
   addToCart,
+  remCart,
   getUsers,
-  addUser
+  addUser,
+  addComment,
+  remComment
 }
