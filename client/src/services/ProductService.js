@@ -17,3 +17,12 @@ export const PostProducts = async (newProduct) => {
     throw error
   }
 }
+
+export const DeleteProduct = async (id) => {
+  try {
+    const res = await Client.delete(`/remove-product/${id}`)
+    return res
+  } catch (error) {
+    throw error
+  }
+}

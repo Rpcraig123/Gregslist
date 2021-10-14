@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { useHistory } from "react-router";
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -12,32 +13,49 @@ const mapStateToProps = ( productState ) => ({
 
 const mapDispatchToProps = (dispatch) => {  
   return {
-    pushProduct: () => dispatch(addProduct())
+    pushProduct: (newProduct) => {
+      // e.preventDefault()
+      dispatch(addProduct(newProduct))
+    }
   }
 }
 
-const testButton = (e) => {
-  e.preventDefault()
-  console.log('test')
-}
-
 const SellPage = (props) => {
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let newProduct = {
+      title,
+      description,
+      price
+    };
+    props.pushProduct(newProduct);
+    history.push("/");
+  };
   
   return (
     <div>
-      <Box onSubmit={(e) => props.pushProduct(e)} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
+      <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
         {/* <form> */}
           <TextField
             id="outlined-textarea"
             label="Product Name"
             placeholder="Product Name"
             multiline
+            onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             id="outlined-textarea"
             label="Description"
             placeholder="Description"
             multiline
+            onChange={(e) => setDescription(e.target.value)}
           />
           <TextField
             id="outlined-textarea"
@@ -47,6 +65,7 @@ const SellPage = (props) => {
             InputProps={{
               startAdornment: <InputAdornment position="start">USD</InputAdornment>,
             }}
+            onChange={(e) => setPrice(parseInt(e.target.value))}
           />
           <Button type='submit' variant="outlined" size="large">Post Product</Button>
         {/* </form> */}

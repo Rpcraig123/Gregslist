@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchProducts } from '../store/actions/ProductActions'
+import { fetchProducts, remProduct } from '../store/actions/ProductActions'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Button from '@mui/material/Button';
 
 const mapStateToProps = ( productState ) => ({
   ...productState
@@ -18,7 +19,8 @@ const mapStateToProps = ( productState ) => ({
 
 const mapDispatchToProps = (dispatch) => {  
   return {
-    getProducts: () => dispatch(fetchProducts())
+    getProducts: () => dispatch(fetchProducts()),
+    delProduct: (id) => dispatch(remProduct(id))
   }
 }
 
@@ -28,11 +30,16 @@ const Products = (props) => {
     props.getProducts()
   }, [])
 
+  const deleteProduct = (e, id) => {
+    e.preventDefault();
+    props.delProduct(id);
+  };
+
   return (
     <div>
       {props.productState.products.products ? (
         props.productState.products.products.map((product) => (
-          <Card sx={{ maxWidth: 350 }}>
+          <Card sx={{ maxWidth: 350 }} key={product._id}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -61,9 +68,10 @@ const Products = (props) => {
               <IconButton color="primary" aria-label="add to shopping cart">
                 <AddShoppingCartIcon />
               </IconButton>
+              <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
+              <Button size="small" color="warning" variant="outlined">Update Item</Button>
             </CardActions>
           </Card>
-          // <h1 key={product._id}>Product Name: {product.title}</h1>
         ))
       ) : (
         null
