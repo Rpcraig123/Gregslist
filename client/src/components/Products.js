@@ -15,6 +15,8 @@ import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
 
 const mapStateToProps = ( productState ) => ({
   ...productState
@@ -31,13 +33,28 @@ const mapDispatchToProps = (dispatch) => {
 const Products = (props) => {
   
   const [request, changeIt] = useState(false)
-
   const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+
   const handleOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let productData = {
+      title,
+      description,
+      price
+    };
+    // props.pushProduct(newProduct);
+    console.log(productData)
   };
 
   const style = {
@@ -53,29 +70,6 @@ const Products = (props) => {
     px: 4,
     pb: 3,
   };
-
-  // return (
-    <React.Fragment>
-      <Button onClick={handleOpen}>Open Child Modal</Button>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style, width: 200 }}>
-          <h2 id="child-modal-title">Text in a child modal</h2>
-          <p id="child-modal-description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </p>
-          <Button onClick={handleClose}>Close Child Modal</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  // );
-
-  // const history = useHistory();
   
   useEffect(() => {
     props.getProducts()
@@ -85,18 +79,6 @@ const Products = (props) => {
     e.preventDefault();
     props.delProduct(id);
     changeIt(true)
-  };
-
-  const updateProduct = (e, title, description, price, id) => {
-    e.preventDefault();
-    let productData = {
-      title,
-      description,
-      price
-    };
-    // history.push("/sell");
-    // props.upProduct(productData, id);
-    // changeIt(true)
   };
 
   return (
@@ -133,8 +115,8 @@ const Products = (props) => {
                 <AddShoppingCartIcon />
               </IconButton>
               <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
-              <Button size="small" color="warning" variant="outlined" onClick={(e) => updateProduct(e, product.title, product.description, product.price, product._id)}>Update Item</Button>
-              <Button onClick={handleOpen}>Update Item</Button>
+              {/* <Button size="small" color="warning" variant="outlined" onClick={(e) => updateProduct(e, product.title, product.description, product.price, product._id)}>Update Item</Button> */}
+              <Button size="small" color="warning" variant="outlined" onClick={handleOpen}>Update Item</Button>
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -148,28 +130,28 @@ const Products = (props) => {
                       <TextField
                         id="outlined-textarea"
                         label="Product Name"
-                        placeholder="Product Name"
                         multiline
+                        defaultValue={product.title}
                         onChange={(e) => setTitle(e.target.value)}
                       />
                       <TextField
                         id="outlined-textarea"
                         label="Description"
-                        placeholder="Description"
+                        defaultValue={product.description}
                         multiline
                         onChange={(e) => setDescription(e.target.value)}
                       />
                       <TextField
                         id="outlined-textarea"
-                        // label="Price"
-                        placeholder="Price"
+                        label="Price"
+                        defaultValue={product.price}
                         multiline
                         InputProps={{
                           startAdornment: <InputAdornment position="start">USD</InputAdornment>,
                         }}
                         onChange={(e) => setPrice(parseInt(e.target.value))}
                       />
-                      <Button type='submit' variant="outlined" size="large">Post Product</Button>
+                      <Button type='submit' color="warning" variant="outlined" size="large">Update Product</Button>
                     {/* </form> */}
                   </Box>
                   {/* <ChildModal /> */}
