@@ -1,4 +1,4 @@
-const { User, Product, Cart } = require('../models')
+const { User, Product, Comment } = require('../models')
 
 const getAllProducts = async (req, res) => {
   try {
@@ -52,7 +52,7 @@ const updateProduct = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     const id = req.params.userId;
-    const cart = await User.find().select({ cart: 1 })
+    const cart = await User.findById(id).select({ cart: 1 })
     return res.status(201).json({
       cart
     })
@@ -118,10 +118,13 @@ const addUser = async (req, res) => {
 
 const addComment = async (req, res) => {
   try {
-    const user = await new User(req.body)
-    await user.save()
+    const productId = req.params.productId;
+    const product = await Product.findById(productId)
+    const comment = req.body.description
+    product.comments.push(comment)
+    await product.save()
     return res.status(201).json({
-      user
+      product
     })
   } catch (error) {
     return res.status(500).json({ error: error.message })

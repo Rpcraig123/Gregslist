@@ -20,8 +20,8 @@ router.post('/new-user', controllers.addUser)
 
 router.get('/users', controllers.getUsers)
 
-// router.post('/new-comment', controllers.addComment)
+router.post('/new-comment/:productId', controllers.addComment)
 
-// router.delete('/rem-comment', controllers.remComment)
+// router.delete('/rem-comment/:productId', controllers.remComment)
 
 module.exports = router
