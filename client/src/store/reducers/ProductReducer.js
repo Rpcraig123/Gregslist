@@ -1,13 +1,13 @@
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT } from "../types";
 
 const defaultState = {
   products: [],
-  newProduct: {
+  productData: {
     title: '',
     description: '',
     price: 0
   },
-  deletedProduct: null
+  deletedProduct: null,
 }
 
 const productReducer = (state = defaultState, action) => {
@@ -15,9 +15,11 @@ const productReducer = (state = defaultState, action) => {
     case GET_PRODUCTS:
       return { ...state, products: action.payload }
     case ADD_PRODUCT:
-      return { ...state, newProduct: action.payload }
+      return { ...state, productData: action.payload }
     case DELETE_PRODUCT:
       return { ...state, productId: action.payload }
+    case SAVE_PRODUCT:
+      return { ...state, productData: action.payload }
     default:
       return { ...state }
   }

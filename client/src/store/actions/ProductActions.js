@@ -1,5 +1,5 @@
 import { GetProducts, PostProducts, DeleteProduct, UpdateProduct } from '../../services/ProductService'
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT } from "../types";
 
 export const fetchProducts = () => {
   return async (dispatch) => {
@@ -39,6 +39,17 @@ export const editProduct = (product, id) => {
     try {
       const updated_product = await UpdateProduct(product, id)
       dispatch({ type: EDIT_PRODUCT, payload: updated_product })
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const saveEditState = (product, id) => {
+  return async (dispatch) => {
+    try {
+      const productData = product
+      dispatch({ type: SAVE_PRODUCT, payload: productData })
     } catch (error) {
       throw error
     }
