@@ -61,6 +61,24 @@ const getCart = async (req, res) => {
   }
 }
 
+const addToCart = async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const product = await Product.findById(productId)
+    console.log(product)
+    const userId = req.body.user_id
+    const user = await User.findById(userId)
+    console.log(user)
+    user.cart.push(product)
+    await user.save()
+    return res.status(201).json({
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 const getUsers = async (req, res) => {
   try {
     const users = await User.find()
@@ -71,19 +89,6 @@ const getUsers = async (req, res) => {
     return res.status(500).send(error.message)
   }
 }
-
-// const addToCart = async (req, res) => {
-//   try {
-//     const id = req.params.productId;
-//     const product = await Product.findById(id)
-//     User.findById(id).cart.push(product)
-//     return res.status(201).json({
-//       Cart
-//     })
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message })
-//   }
-// }
 
 const addUser = async (req, res) => {
   try {
@@ -103,6 +108,7 @@ module.exports = {
   removeProduct,
   updateProduct,
   getCart,
+  addToCart,
   getUsers,
   addUser
 }
