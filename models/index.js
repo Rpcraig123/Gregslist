@@ -1,14 +1,14 @@
 const { model } = require('mongoose')
-const CartSchema = require('./cart')
 const ProductSchema = require('./product')
 const UserSchema = require('./user')
+const Comment = require('./comment')
 
 const User = model('users', UserSchema)
 const Product = model('products', ProductSchema)
-const Cart = model('cart', CartSchema)
+const Comment = model('comments', CommentSchema)
 
 module.exports = {
   User,
   Product,
-  Cart
+  Comment
 }
