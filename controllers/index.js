@@ -49,18 +49,28 @@ const updateProduct = async (req, res) => {
   })
 }
 
-// const getCart = async (req, res) => {
-//   try {
-//     const cart = await .find()
-//     const product = await Product.findById(id)
-//     const cart = await Cart.find()
-//     return res.status(201).json({
-//       cart
-//     })
-//   } catch (error) {
-//     return res.status(500).send(error.message)
-//   }
-// }
+const getCart = async (req, res) => {
+  try {
+    const id = req.params.userId;
+    const cart = await User.find().select({ cart: 1 })
+    return res.status(201).json({
+      cart
+    })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find()
+    return res.status(201).json({
+      users
+    })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
 
 // const addToCart = async (req, res) => {
 //   try {
@@ -75,21 +85,24 @@ const updateProduct = async (req, res) => {
 //   }
 // }
 
-// const addUser = async (req, res) => {
-//   try {
-//     const user = await new User(req.body)
-//     await user.save()
-//     return res.status(201).json({
-//       user
-//     })
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message })
-//   }
-// }
+const addUser = async (req, res) => {
+  try {
+    const user = await new User(req.body)
+    await user.save()
+    return res.status(201).json({
+      user
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
 
 module.exports = {
   getAllProducts,
   addProduct,
   removeProduct,
-  updateProduct
+  updateProduct,
+  getCart,
+  getUsers,
+  addUser
 }
