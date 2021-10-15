@@ -5,6 +5,7 @@ import Cart from './pages/Cart'
 import SellPage from './pages/SellPage'
 import UpdatePage from './pages/UpdatePage'
 import Register from './pages/Register'
+import SignIn from './pages/SignIn'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/sell" component={SellPage} />
         <Route path="/update" component={UpdatePage} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={SignIn} />
       </Switch>
     </div>
   );

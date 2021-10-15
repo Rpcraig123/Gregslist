@@ -45,6 +45,9 @@ function Navbar() {
             <Link to="/register" className={classes.link}>
               Register
             </Link>
+            <Link to="/login" className={classes.link}>
+              Log in
+            </Link>
           </div>
       </Toolbar>
     </AppBar>
