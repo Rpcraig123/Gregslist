@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-// import { remProduct, saveEditState } from '../store/actions/ProductActions'
+import { fetchComments, addComment } from '../store/actions/ProductActions'
 // import { useHistory } from "react-router";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -12,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-// import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';
 
 const mapStateToProps = ( productState ) => ({
   ...productState
@@ -22,6 +24,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // delProductDet: (id) => dispatch(remProduct(id)),
     // saveProductDet: (product) => dispatch(saveEditState(product))
+    getComments: (id) => dispatch(fetchComments(id)),
+    postComment: (data, id) => dispatch(addComment(data, id))
   }
 }
 
@@ -45,6 +49,26 @@ const ProductDetails = (props) => {
   //   history.push(`/product-details`);
   //   props.saveProductDet(productData);
   // };
+
+  const [comment, setFormValues] = useState('')
+  const [request, changeIt] = useState(false)
+
+  const handleChange = (e) => {
+    setFormValues(e.target.value)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const id = props.productState.productData.id
+    props.postComment(comment, id)
+    setFormValues('')
+    changeIt(true)
+  }
+
+  useEffect(() => {
+    props.getComments(props.productState.productData.id)
+    changeIt(false)
+  }, [request])
   
   return (
     <div>
@@ -80,8 +104,12 @@ const ProductDetails = (props) => {
           <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, props.productState.productData.title, props.productState.productData.description, props.productState.productData.price, props.productState.productData._id)}>Update Item</Button> */}
         </CardActions>
       </Card>
+      <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
+        <TextField label="Filled success" variant="filled" name="comment" color="secondary" focused onChange={handleChange}/>
+        <Button size="small" type="submit" color="secondary" variant="outlined">Post Comment</Button>
+      </Box>
       <h2>Comments</h2>
-      
+      <p>{props.productState.comments}</p>
     </div>
   )
 }

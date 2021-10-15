@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, SAVE_PRODUCT } from "../types";
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, SAVE_PRODUCT, ADD_COMMENT, PRODUCT_COMMENTS } from "../types";
 
 const defaultState = {
   products: [],
@@ -9,6 +9,8 @@ const defaultState = {
     price: 0
   },
   deletedProduct: null,
+  comments: [],
+  comment: ''
 }
 
 const productReducer = (state = defaultState, action) => {
@@ -21,6 +23,10 @@ const productReducer = (state = defaultState, action) => {
       return { ...state, productId: action.payload }
     case SAVE_PRODUCT:
       return { ...state, productData: action.payload }
+    case ADD_COMMENT:
+      return { ...state, comment: action.payload }
+    case PRODUCT_COMMENTS:
+      return { ...state, comments: action.payload }
     default:
       return { ...state }
   }

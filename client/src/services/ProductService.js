@@ -35,3 +35,23 @@ export const UpdateProduct = async (product, id) => {
     throw error
   }
 }
+
+export const getComments = async (productId) => {
+  try {
+    const res = await Client.get(`/comments/${productId}`)
+    return res.data.comments.comments
+  } catch (error) {
+    throw error
+  }
+}
+
+export const postComment = async (desc, id) => {
+  try {
+    console.log('desc', desc)
+    const res = await Client.post(`/new-comment/${id}`, desc)
+    console.log('res', res)
+    return res
+  } catch (error) {
+    throw error
+  }
+}

@@ -1,5 +1,5 @@
-import { GetProducts, PostProducts, DeleteProduct, UpdateProduct } from '../../services/ProductService'
-import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT } from "../types";
+import { GetProducts, PostProducts, DeleteProduct, UpdateProduct, getComments, postComment } from '../../services/ProductService'
+import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT, ADD_COMMENT, PRODUCT_COMMENTS } from "../types";
 
 export const fetchProducts = () => {
   return async (dispatch) => {
@@ -50,6 +50,28 @@ export const saveEditState = (product, id) => {
     try {
       const productData = product
       dispatch({ type: SAVE_PRODUCT, payload: productData })
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const fetchComments = (id) => {
+  return async (dispatch) => {
+    try {
+      const comments = await getComments(id)
+      dispatch({ type: PRODUCT_COMMENTS, payload: comments })
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const addComment = (data, id) => {
+  return async (dispatch) => {
+    try {
+      const comment = await postComment(data, id)
+      dispatch({ type: ADD_COMMENT, payload: comment })
     } catch (error) {
       throw error
     }
