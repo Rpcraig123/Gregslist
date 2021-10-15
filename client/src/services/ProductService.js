@@ -29,7 +29,6 @@ export const DeleteProduct = async (id) => {
 
 export const UpdateProduct = async (product, id) => {
   try {
-    console.log('updateProduct id', id)
     const res = await Client.put(`/update-product/${id}`, product)
     return res
   } catch (error) {
