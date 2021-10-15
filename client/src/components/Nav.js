@@ -75,24 +75,10 @@ const Navbar = (props) => {
           Gregslist
         </Typography>
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-            <Link to="/sell" className={classes.link}>
-              Sell Something
-            </Link>
-            <Link to="/cart" className={classes.link}>
-              Cart
-            </Link>
-            <Link to="/register" className={classes.link}>
-              Register
-            </Link>
-            <Link to="/login" className={classes.link}>
-              Log In
-            </Link>
-            <Link to="/login" onClick={() => handleLogOut()} className={classes.link}>
-              Log Out
-            </Link>
+            {props.userState.authenticated ? ( <Link to="/" className={classes.link}>Home</Link> ) : ( <Link to="/login" className={classes.link}>Log In</Link> )}
+            {props.userState.authenticated ? ( <Link to="/sell" className={classes.link}>Sell Something</Link> ) : ( <Link to="/register" className={classes.link}>Register</Link> )}
+            {props.userState.authenticated ? ( <Link to="/cart" className={classes.link}>Cart</Link> ) : null }
+            {props.userState.authenticated ? ( <Link to="/login" onClick={() => handleLogOut()} className={classes.link}>Log Out</Link> ) : null }
           </div>
       </Toolbar>
     </AppBar>
