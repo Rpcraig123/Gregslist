@@ -60,6 +60,7 @@ const Products = (props) => {
       {props.productState.products.products ? (
         props.productState.products.products.map((product) => (
           <Card sx={{ maxWidth: 350 }} key={product._id}>
+            <a className = "product-link" href="">  
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -68,7 +69,7 @@ const Products = (props) => {
               }
               title={product.title}
               subheader={"Price $" + product.price}
-            />
+            /></a>
             {/* <CardMedia
               component="img"
               height="194"

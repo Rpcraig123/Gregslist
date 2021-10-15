@@ -119,6 +119,18 @@ const addComment = async (req, res) => {
   }
 }
 
+const getComments = async (req, res) => {
+  try {
+    const id = req.params.productId;
+    const comments = await Product.findById(id).select({ comments: 1 })
+    return res.status(201).json({
+      comments
+    })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const remComment = async (req, res) => {
   try {
     const productId = req.params.productId;
@@ -145,5 +157,6 @@ module.exports = {
   remCart,
   getUsers,
   addComment,
+  getComments,
   remComment
 }
