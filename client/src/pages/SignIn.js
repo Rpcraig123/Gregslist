@@ -21,8 +21,8 @@ export default function SignIn(props) {
     const payload = await SignInUser(formValues)
     console.log('payload', payload)
     setFormValues({ username: '',password: '' })
-    // props.setUser(payload)
-    // props.toggleAuthenticated(true)
+    props.setUser(payload)
+    props.toggleAuthenticated(true)
     history.push('/')
   }
 
