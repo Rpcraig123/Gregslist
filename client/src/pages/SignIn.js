@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { SignInUser } from '../services/Auth'
 import { useHistory } from "react-router";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { userLogin, authLogin } from '../store/actions/UserActions'
 
-export default function SignIn(props) {
+const mapStateToProps = ( userState ) => ({
+  ...userState
+})
+
+const mapDispatchToProps = (dispatch) => {  
+  return {
+    setUser: (payload) => dispatch(userLogin(payload)),
+    toggleAuthenticated: (payload) => dispatch(authLogin(payload))
+  }
+}
+
+const SignIn = (props) => {
 
   const [formValues, setFormValues] = useState({ username: '', password: '' })
   
@@ -19,8 +32,8 @@ export default function SignIn(props) {
     e.preventDefault()
     const payload = await SignInUser(formValues)
     setFormValues({ username: '',password: '' })
-    // props.setUser(payload)
-    // props.toggleAuthenticated(true)
+    props.setUser(payload)
+    props.toggleAuthenticated(true)
     history.push('/')
   }
 
@@ -49,3 +62,5 @@ export default function SignIn(props) {
     </div>
   )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
