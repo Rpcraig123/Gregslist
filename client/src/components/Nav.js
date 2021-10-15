@@ -75,6 +75,7 @@ const Navbar = (props) => {
           Gregslist
         </Typography>
           <div className={classes.navlinks}>
+            {props.userState.authenticated ? ( "Logged in as " + props.userState.user.username ) : null }
             {props.userState.authenticated ? ( <Link to="/" className={classes.link}>Home</Link> ) : ( <Link to="/login" className={classes.link}>Log In</Link> )}
             {props.userState.authenticated ? ( <Link to="/sell" className={classes.link}>Sell Something</Link> ) : ( <Link to="/register" className={classes.link}>Register</Link> )}
             {props.userState.authenticated ? ( <Link to="/cart" className={classes.link}>Cart</Link> ) : null }
