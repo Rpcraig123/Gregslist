@@ -2,6 +2,7 @@ import Client from './'
 
 export const SignInUser = async (data) => {
   try {
+    console.log('data', data)
     const res = await Client.post('/auth/login', data)
     localStorage.setItem('token', res.data.token)
     return res.data.user
@@ -12,7 +13,6 @@ export const SignInUser = async (data) => {
 
 export const RegisterUser = async (data) => {
   try {
-    // console.log('data', data)
     const res = await Client.post('/auth/register', data)
     console.log('res', res)
     console.log('res.data', res.data)

@@ -7,6 +7,7 @@ const Login = async (req, res) => {
       where: { username: req.body.username },
       raw: true
     })
+    console.log('user', user)
     if(user && (await middleware.comparePassword(user.passwordDigest, req.body.password))){
       let payload = {
         id: user.id,

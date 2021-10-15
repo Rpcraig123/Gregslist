@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SignInUser } from '../services/Auth'
+import { useHistory } from "react-router";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -12,13 +13,17 @@ export default function SignIn(props) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
 
+  const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    // console.log(formValues)
     const payload = await SignInUser(formValues)
+    console.log('payload', payload)
     setFormValues({ username: '',password: '' })
-    props.setUser(payload)
-    props.toggleAuthenticated(true)
-    props.history.push('/')
+    // props.setUser(payload)
+    // props.toggleAuthenticated(true)
+    history.push('/')
   }
 
   return (
