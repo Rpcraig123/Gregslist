@@ -43,7 +43,7 @@ const Products = (props) => {
     changeIt(true)
   };
 
-  const saveProduct = (e, title, description, price, id) => {
+  const saveProduct = (e, title, description, price, id, link) => {
     e.preventDefault();
     let productData = {
       id,
@@ -51,7 +51,7 @@ const Products = (props) => {
       description,
       price
     };
-    history.push("/update");
+    history.push(`/${link}`);
     props.saveProduct(productData);
   };
 
@@ -60,7 +60,7 @@ const Products = (props) => {
       {props.productState.products.products ? (
         props.productState.products.products.map((product) => (
           <Card sx={{ maxWidth: 350 }} key={product._id}>
-            <a className = "product-link" href="">  
+            <a className = "product-link" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "product-details")}>  
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -89,7 +89,7 @@ const Products = (props) => {
                 <AddShoppingCartIcon />
               </IconButton>
               <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
-              <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id)}>Update Item</Button>
+              <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "update")}>Update Item</Button>
             </CardActions>
           </Card>
         ))

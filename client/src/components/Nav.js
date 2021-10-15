@@ -7,6 +7,8 @@ import { useHistory } from "react-router";
 import { CheckSession } from '../services/Auth'
 import { userLogout, authLogout, userCheck, authCheck } from '../store/actions/UserActions'
 
+// utilized styling from Damilola Adedoyin Ezekiel at Javascript works 
+// article: https://javascript.works-hub.com/learn/how-to-create-a-responsive-navbar-using-material-ui-and-react-router-f9a01
 const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(10),

@@ -7,6 +7,7 @@ import SellPage from './pages/SellPage'
 import UpdatePage from './pages/UpdatePage'
 import Register from './pages/Register'
 import SignIn from './pages/SignIn'
+import ProductDetails from './pages/ProductDetails';
 
 const mapStateToProps = ( userState ) => ({
   ...userState
@@ -27,6 +28,7 @@ function App(props) {
         <Route path="/update" component={UpdatePage} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={SignIn} />
+        <Route path="/product-details" component={ProductDetails} />
       </Switch>
     </div>
   );

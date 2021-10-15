@@ -3,7 +3,7 @@ import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, SAVE_PRODUCT } from "../type
 const defaultState = {
   products: [],
   productData: {
-    id: null,
+    id: '',
     title: '',
     description: '',
     price: 0
