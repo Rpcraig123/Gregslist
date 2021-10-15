@@ -1,9 +1,9 @@
-const { Users } = require('../models')
+const { User } = require('../models')
 const middleware = require('../middleware')
 
 const Login = async (req, res) => {
   try {
-    const user = await Users.findOne({
+    const user = await User.findOne({
       where: { username: req.body.username },
       raw: true
     })
@@ -22,9 +22,10 @@ const Login = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
+    console.log('req.body', req.body)
     const { first_name, last_name, username, email, password } = req.body
     let passwordDigest = await middleware.hashPassword(password)
-    const user = await Users.create({ first_name, last_name, username, email, passwordDigest })
+    const user = await User.create({ first_name, last_name, username, email, passwordDigest })
     res.send(user)
   } catch (error) {
     throw error

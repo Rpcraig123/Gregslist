@@ -29,32 +29,19 @@ const mapDispatchToProps = (dispatch) => {
 const Products = (props) => {
   
   const [request, changeIt] = useState(false)
-  const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [price, setPrice] = useState(0);
 
-  const handleOpen = (title, description, price) => {
-    setOpen(true);
-    setTitle(title);
-    setDescription(description);
-    setPrice(price);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let productData = {
-      title,
-      description,
-      price
-    };
-    props.pushProduct(productData);
-    // console.log(productData)
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   let productData = {
+  //     title,
+  //     description,
+  //     price
+  //   };
+  //   props.pushProduct(productData);
+  // };
 
   const history = useHistory();
   
@@ -77,10 +64,8 @@ const Products = (props) => {
       description,
       price
     };
-
     history.push("/update");
     props.saveProduct(productData);
-    // changeIt(true)
   };
 
   return (

@@ -12,8 +12,6 @@ const iState = {
   confirmPassword: ''
 }
 
-const history = useHistory();
-
 export default function Register(props) {
   const [formValues, setFormValues] = useState({
     first_name: '',
@@ -23,6 +21,8 @@ export default function Register(props) {
     password: '',
     confirmPassword: ''
   })
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -38,7 +38,7 @@ export default function Register(props) {
       password: formValues.password
     })
     setFormValues(iState)
-    props.history.push('/')
+    history.push('/')
     alert('Account has been created! Sign in to proceed!')
   }
 
