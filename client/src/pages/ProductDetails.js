@@ -50,17 +50,17 @@ const ProductDetails = (props) => {
   //   props.saveProductDet(productData);
   // };
 
-  const [comment, setFormValues] = useState('')
+  const [description, setFormValues] = useState('')
   const [request, changeIt] = useState(false)
 
   const handleChange = (e) => {
-    setFormValues(e.target.value)
+    setFormValues({ ...description, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const id = props.productState.productData.id
-    props.postComment(comment, id)
+    props.postComment(description, id)
     setFormValues('')
     changeIt(true)
   }
@@ -105,7 +105,7 @@ const ProductDetails = (props) => {
         </CardActions>
       </Card>
       <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
-        <TextField label="Filled success" variant="filled" name="comment" color="secondary" focused onChange={handleChange}/>
+        <TextField label="Filled success" variant="filled" name="description" color="secondary" focused onChange={handleChange}/>
         <Button size="small" type="submit" color="secondary" variant="outlined">Post Comment</Button>
       </Box>
       <h2>Comments</h2>
