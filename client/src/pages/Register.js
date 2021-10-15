@@ -35,7 +35,9 @@ export default function Register(props) {
       last_name: formValues.last_name,
       username: formValues.username,
       email: formValues.email,
-      password: formValues.password
+      password: formValues.password,
+      products: [],
+      cart: []
     })
     setFormValues(iState)
     history.push('/')
@@ -48,7 +50,7 @@ export default function Register(props) {
         <h1>CREATE AN ACCOUNT</h1>
           <TextField
             id="outlined-textarea"
-            name="First Name"
+            name="first_name"
             label="First Name"
             placeholder="First Name"
             multiline
@@ -56,7 +58,7 @@ export default function Register(props) {
           />
           <TextField
             id="outlined-textarea"
-            name="Last Name"
+            name="last_name"
             label="Last Name"
             placeholder="Last Name"
             multiline
@@ -81,6 +83,7 @@ export default function Register(props) {
           <TextField
             id="outlined-textarea"
             name="password"
+            type="password"
             label="password"
             placeholder="password"
             multiline
@@ -88,13 +91,14 @@ export default function Register(props) {
           />
           <TextField
             id="outlined-textarea"
-            name="confirm password"
+            name="confirmPassword"
+            type="password"
             label="confirm password"
             placeholder="confirm password"
             multiline
             onChange={handleChange}
           />
-          <Button type="submit" variant="outlined" size="large" disabled={!formValues.email || (!formValues.password || formValues.confirmPassword !== formValues.password)}>Post Product</Button>
+          <Button type="submit" variant="outlined" size="large" disabled={!formValues.email || (!formValues.password || formValues.confirmPassword !== formValues.password)}>Create Account</Button>
       </Box>
     </div>
   )

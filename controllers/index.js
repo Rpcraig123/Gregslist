@@ -104,17 +104,17 @@ const getUsers = async (req, res) => {
   }
 }
 
-const addUser = async (req, res) => {
-  try {
-    const user = await new User(req.body)
-    await user.save()
-    return res.status(201).json({
-      user
-    })
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
-  }
-}
+// const addUser = async (req, res) => {
+//   try {
+//     const user = await new User(req.body)
+//     await user.save()
+//     return res.status(201).json({
+//       user
+//     })
+//   } catch (error) {
+//     return res.status(500).json({ error: error.message })
+//   }
+// }
 
 const addComment = async (req, res) => {
   try {
@@ -156,7 +156,7 @@ module.exports = {
   addToCart,
   remCart,
   getUsers,
-  addUser,
+  // addUser,
   addComment,
   remComment
 }
