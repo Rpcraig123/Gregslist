@@ -42,6 +42,9 @@ function Navbar() {
             <Link to="/cart" className={classes.link}>
               Cart
             </Link>
+            <Link to="/register" className={classes.link}>
+              Register
+            </Link>
           </div>
       </Toolbar>
     </AppBar>
