@@ -47,9 +47,7 @@ export const getComments = async (productId) => {
 
 export const postComment = async (desc, id) => {
   try {
-    console.log('desc', desc)
     const res = await Client.post(`/new-comment/${id}`, desc)
-    console.log('res', res)
     return res
   } catch (error) {
     throw error
