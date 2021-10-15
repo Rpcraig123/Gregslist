@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SignInUser } from '../../services/Auth'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function SignIn(props) {
 
@@ -22,18 +22,26 @@ export default function SignIn(props) {
 
   return (
     <div className="signin-sect">
-      <h1>SIGN IN</h1>
-        <Form className="signin-form" onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
-            <Form.Control onChange={handleChange} name="username" type="text" value={formValues.username} required/>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={handleChange} type="password" name="password" value={formValues.password} required/>
-          </Form.Group>
-          <Button type="submit" disabled={!formValues.username || !formValues.password}>Sign In</Button>
-        </Form>
+      <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
+        <h1>SIGN IN</h1>
+        <TextField
+          id="outlined-textarea"
+          name="username"
+          label="username"
+          placeholder="username"
+          multiline
+          onChange={handleChange}
+        />
+        <TextField
+          id="outlined-textarea"
+          name="password"
+          label="password"
+          placeholder="password"
+          multiline
+          onChange={handleChange}
+        />
+        <Button type="submit" variant="outlined" size="large" disabled={!formValues.username || !formValues.password}>Sign In</Button>
+      </Box>
     </div>
   )
 }
