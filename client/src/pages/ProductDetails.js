@@ -16,8 +16,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
 
-const mapStateToProps = ( productState ) => ({
-  ...productState
+const mapStateToProps = ( productState, userState ) => ({
+  ...productState, ...userState
 })
 
 const mapDispatchToProps = (dispatch) => {  
@@ -112,7 +112,16 @@ const ProductDetails = (props) => {
       {/* <p>{props.productState.comments}</p> */}
       {props.productState.comments ?
         props.productState.comments.map((comment, index) => (
-          <p key={index}>{comment}</p>
+          <Card sx={{ maxWidth: '400px' }}>
+            <CardContent>
+              {/* <Typography variant="h5" component="div">
+                {props.userState.user.username}
+              </Typography> */}
+              <Typography variant="body2">
+                <p key={index}>{comment}</p>
+              </Typography>
+            </CardContent>
+          </Card>
         )) : null}
     </div>
   )
