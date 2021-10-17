@@ -11,6 +11,8 @@ router.get('/auth/session', middleware.stripToken, middleware.verifyToken, authC
 
 // Product Routes
 router.get('/', controllers.getAllProducts)
+router.get('/product/:productId', controllers.getProduct)
+router.get('/product-price/:productId', controllers.getPrice)
 router.post('/new-product', controllers.addProduct)
 router.delete('/remove-product/:productId', controllers.removeProduct)
 router.put('/update-product/:productId', controllers.updateProduct)

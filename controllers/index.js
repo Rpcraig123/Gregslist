@@ -11,6 +11,18 @@ const getAllProducts = async (req, res) => {
   }
 }
 
+const getProduct = async (req, res) => {
+  try {
+    const id = req.params.productId
+    const product = await Product.findById(id)
+    return res.status(201).json({
+      product
+    })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const addProduct = async (req, res) => {
   try {
     const product = await new Product(req.body)
@@ -55,6 +67,19 @@ const getCart = async (req, res) => {
     const cart = await User.findById(id).select({ cart: 1 })
     return res.status(201).json({
       cart
+    })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getPrice = async (req, res) => {
+  try {
+    const id = req.params.productId;
+    const product = await Product.findById(id) 
+    const productPrice = product.price
+    return res.status(201).json({
+      productPrice
     })
   } catch (error) {
     return res.status(500).send(error.message)
@@ -149,10 +174,12 @@ const remComment = async (req, res) => {
 
 module.exports = {
   getAllProducts,
+  getProduct,
   addProduct,
   removeProduct,
   updateProduct,
   getCart,
+  getPrice,
   addToCart,
   remCart,
   getUsers,
