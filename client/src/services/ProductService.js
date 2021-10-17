@@ -53,3 +53,12 @@ export const postComment = async (desc, id) => {
     throw error
   }
 }
+
+export const addProductCart = async (data, id) => {
+  try {
+    const res = await Client.post(`/new-product-cart/${id}`, data)
+    return res
+  } catch (error) {
+    throw error
+  }
+}

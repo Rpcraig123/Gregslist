@@ -65,7 +65,7 @@ const addToCart = async (req, res) => {
   try {
     const productId = req.params.productId;
     const product = await Product.findById(productId)
-    const userId = req.body.user_id
+    const userId = req.body.userId
     const user = await User.findById(userId)
     user.cart.push(product)
     await user.save()

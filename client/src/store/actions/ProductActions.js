@@ -1,4 +1,4 @@
-import { GetProducts, PostProducts, DeleteProduct, UpdateProduct, getComments, postComment } from '../../services/ProductService'
+import { GetProducts, PostProducts, DeleteProduct, UpdateProduct, getComments, postComment, addProductCart } from '../../services/ProductService'
 import { GET_PRODUCTS, ADD_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCT, ADD_COMMENT, PRODUCT_COMMENTS } from "../types";
 
 export const fetchProducts = () => {
@@ -72,6 +72,17 @@ export const addComment = (data, id) => {
     try {
       const comment = await postComment(data, id)
       dispatch({ type: ADD_COMMENT, payload: comment })
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const addToCart = (data, id) => {
+  return async (dispatch) => {
+    try {
+      const product = await addProductCart(data, id)
+      // dispatch({ type: ADD_COMMENT, payload: comment })
     } catch (error) {
       throw error
     }

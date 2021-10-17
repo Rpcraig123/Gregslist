@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router";
-import { fetchProducts, remProduct, saveEditState } from '../store/actions/ProductActions'
+import { fetchProducts, remProduct, saveEditState, addToCart } from '../store/actions/ProductActions'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import { red } from '@mui/material/colors';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
 
-const mapStateToProps = ( productState ) => ({
-  ...productState
+const mapStateToProps = ( productState, userState ) => ({
+  ...productState, ...userState
 })
 
 const mapDispatchToProps = (dispatch) => {  
   return {
     getProducts: () => dispatch(fetchProducts()),
     delProduct: (id) => dispatch(remProduct(id)),
-    saveProduct: (product) => dispatch(saveEditState(product))
+    saveProduct: (product) => dispatch(saveEditState(product)),
+    addCart: (user, productId) => dispatch(addToCart(user, productId))
   }
 }
 
@@ -55,6 +55,16 @@ const Products = (props) => {
     props.saveProduct(productData);
   };
 
+  const addCartProduct = (e, id) => {
+    e.preventDefault();
+    const userId = props.userState.user.id
+    let userData = {
+      userId
+    }
+    props.addCart(userData, id);
+    alert('item added to cart')
+  }
+
   return (
     <div className="product-cards">
       {props.productState.products.products ? (
@@ -62,11 +72,6 @@ const Products = (props) => {
           <Card sx={{ maxWidth: 350 }} key={product._id}>
             <a className = "product-link" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "product-details")}>  
             <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
-                </Avatar>
-              }
               title={product.title}
               subheader={"Price $" + product.price}
             /></a>
@@ -82,11 +87,8 @@ const Products = (props) => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
               <IconButton color="primary" aria-label="add to shopping cart">
-                <AddShoppingCartIcon />
+                <AddShoppingCartIcon onClick={(e) => addCartProduct(e, product._id)}/>
               </IconButton>
               <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
               <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "update")}>Update Item</Button>
