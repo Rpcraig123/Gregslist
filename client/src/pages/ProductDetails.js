@@ -61,8 +61,8 @@ const ProductDetails = (props) => {
     e.preventDefault()
     const id = props.productState.productData.id
     props.postComment(description, id)
-    setFormValues('')
     changeIt(true)
+    setFormValues('')
   }
 
   useEffect(() => {
@@ -105,11 +105,15 @@ const ProductDetails = (props) => {
         </CardActions>
       </Card>
       <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
-        <TextField label="Filled success" variant="filled" name="description" color="secondary" focused onChange={handleChange}/>
+        <TextField label="Leave a comment" variant="filled" name="description" color="secondary" focused onChange={handleChange}/>
         <Button size="small" type="submit" color="secondary" variant="outlined">Post Comment</Button>
       </Box>
       <h2>Comments</h2>
-      <p>{props.productState.comments}</p>
+      {/* <p>{props.productState.comments}</p> */}
+      {props.productState.comments ?
+        props.productState.comments.map((comment, index) => (
+          <p key={index}>{comment}</p>
+        )) : null}
     </div>
   )
 }
