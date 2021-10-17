@@ -21,12 +21,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const Cart = (props) => {
 
-  useEffect(() => {
-    props.getCart(props.userState.user.id)
-    getCartTotal(props.userState.cart)
-  }, [])
-
   const [total, setTotal] = useState(0)
+  const [request, changeIt] = useState(false)
+  
+  useEffect(async () => {
+    await props.getCart(props.userState.user.id)
+    getCartTotal(props.userState.cart)
+  }, [request])
 
   const history = useHistory();
 
@@ -48,6 +49,7 @@ const Cart = (props) => {
       cartTotal += cart[i].price
     }
     setTotal(cartTotal)
+    changeIt(true)
   }
   
   return (

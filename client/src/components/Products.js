@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 // import { red } from '@mui/material/colors';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 
 const mapStateToProps = ( productState, userState ) => ({
   ...productState, ...userState
@@ -67,37 +68,42 @@ const Products = (props) => {
 
   return (
     <div className="product-cards">
-      {props.productState.products.products ? (
-        props.productState.products.products.map((product) => (
-          <Card sx={{ maxWidth: 350 }} key={product._id}>
-            <a className = "product-link" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "product-details")}>  
-            <CardHeader
-              title={product.title}
-              subheader={"Price $" + product.price}
-            /></a>
-            {/* <CardMedia
-              component="img"
-              height="194"
-              image="/static/images/cards/paella.jpg"
-              alt="Paella dish"
-            /> */}
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {"Description: " + product.description}
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton color="primary" aria-label="add to shopping cart">
-                <AddShoppingCartIcon onClick={(e) => addCartProduct(e, product._id)}/>
-              </IconButton>
-              <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
-              <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "update")}>Update Item</Button>
-            </CardActions>
-          </Card>
-        ))
-      ) : (
-        null
-      )}
+      <Container fixed>
+        <h1>Products</h1>
+        <div className="flex-container">
+          {props.productState.products.products ? (
+            props.productState.products.products.map((product) => (
+              <Card sx={{ maxWidth: 300 }} key={product._id}>
+                <a className = "product-link" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "product-details")}>  
+                <CardHeader
+                  title={product.title}
+                  subheader={"Price $" + product.price}
+                /></a>
+                {/* <CardMedia
+                  component="img"
+                  height="194"
+                  image="/static/images/cards/paella.jpg"
+                  alt="Paella dish"
+                /> */}
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    {"Description: " + product.description}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton color="primary" aria-label="add to shopping cart">
+                    <AddShoppingCartIcon onClick={(e) => addCartProduct(e, product._id)}/>
+                  </IconButton>
+                  <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, product._id)}>Delete Item</Button>
+                  <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, product.title, product.description, product.price, product._id, "update")}>Update Item</Button>
+                </CardActions>
+              </Card>
+            ))
+          ) : (
+            null
+          )}
+        </div>
+      </Container>
     </div>
   )
 }
