@@ -64,7 +64,13 @@ const updateProduct = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     const id = req.params.userId;
-    const cart = await User.findById(id).select({ cart: 1 })
+    const cartIds = await User.findById(id).select({ cart: 1 })
+    let cart = []
+    cartProducts = cartIds.cart
+    for (i = 0; i < cartProducts.length; i++){
+      let product = await Product.findById(cartProducts[i])
+      cart.push(product)
+    }
     return res.status(201).json({
       cart
     })

@@ -70,7 +70,9 @@ export const authCheck = (data) => {
 export const fetchCart = (userId) => {
   return async (dispatch) => {
     try {
+      console.log(userId)
       const cart = await getCart(userId)
+      console.log(cart)
       dispatch({ type: GET_CART, payload: cart })
     } catch (error) {
       throw error

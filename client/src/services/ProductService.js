@@ -66,7 +66,7 @@ export const addProductCart = async (data, id) => {
 export const getCart = async (id) => {
   try {
     const res = await Client.get(`/cart/${id}`)
-    return res.data.cart.cart
+    return res.data.cart
   } catch (error) {
     throw error
   }
