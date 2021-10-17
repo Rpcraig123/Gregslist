@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchCart } from '../store/actions/UserActions'
 import { saveEditState } from '../store/actions/ProductActions'
@@ -23,7 +23,10 @@ const Cart = (props) => {
 
   useEffect(() => {
     props.getCart(props.userState.user.id)
+    getCartTotal(props.userState.cart)
   }, [])
+
+  const [total, setTotal] = useState(0)
 
   const history = useHistory();
 
@@ -38,6 +41,14 @@ const Cart = (props) => {
     history.push(`/${link}`);
     props.saveProduct(productData);
   };
+
+  const getCartTotal = (cart) => {
+    let cartTotal = 0
+    for (let i = 0; i < cart.length; i++){
+      cartTotal += cart[i].price
+    }
+    setTotal(cartTotal)
+  }
   
   return (
     <div>
@@ -66,6 +77,7 @@ const Cart = (props) => {
       ) : (
         null
       )}
+      <h1>Cart Total: ${total}</h1>
     </div>
   )
 }
