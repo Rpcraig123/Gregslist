@@ -1,4 +1,5 @@
-import { LOGIN_USER, LOGIN_AUTH, LOGOUT_USER, LOGOUT_AUTH, CHECK_USER, CHECK_AUTH } from "../types";
+import { LOGIN_USER, LOGIN_AUTH, LOGOUT_USER, LOGOUT_AUTH, CHECK_USER, CHECK_AUTH, GET_CART } from "../types";
+import { getCart } from '../../services/ProductService'
 
 export const userLogin = (data) => {
   return async (dispatch) => {
@@ -60,6 +61,17 @@ export const authCheck = (data) => {
     try {
       const authenticated = true
       dispatch({ type: CHECK_AUTH, payload: authenticated })
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const fetchCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      const cart = await getCart(userId)
+      dispatch({ type: GET_CART, payload: cart })
     } catch (error) {
       throw error
     }

@@ -5,6 +5,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const SAVE_PRODUCT = 'SAVE_PRODUCT';
 export const PRODUCT_COMMENTS = 'PRODUCT_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const GET_CART = 'GET_CART';
 // export const PRODUCT_LOADING_TYPE = 'PRODUCT_LOADING_TYPE'
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_AUTH = 'LOGIN_AUTH';

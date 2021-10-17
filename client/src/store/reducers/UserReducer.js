@@ -1,9 +1,9 @@
-import { LOGIN_USER, LOGIN_AUTH, LOGOUT_USER, LOGOUT_AUTH, CHECK_USER, CHECK_AUTH } from "../types";
+import { LOGIN_USER, LOGIN_AUTH, LOGOUT_USER, LOGOUT_AUTH, CHECK_USER, CHECK_AUTH, GET_CART } from "../types";
 
 const defaultState = {
-  username: '',
   user: null,
   authenticated: false,
+  cart: []
 }
 
 const userReducer = (state = defaultState, action) => {
@@ -20,6 +20,8 @@ const userReducer = (state = defaultState, action) => {
       return { ...state, user: action.payload }
     case CHECK_AUTH:
       return { ...state, authenticated: action.payload }
+    case GET_CART:
+      return { ...state, cart: action.payload }
     default:
       return { ...state }
   }
