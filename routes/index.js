@@ -25,9 +25,8 @@ router.delete('/rem-product-cart/:productId', controllers.remCart)
 // Comment Routes
 router.post('/new-comment/:productId', controllers.addComment)
 router.get('/comments/:productId', controllers.getComments)
-// router.delete('/rem-comment/:productId', controllers.remComment)
 
-// Testing Routes
+// User Routes
 router.get('/users', controllers.getUsers)
 
 module.exports = router

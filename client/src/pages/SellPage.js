@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { addProduct } from '../store/actions/ProductActions'
 import Container from '@mui/material/Container';
-// import { useFormControl } from '@mui/material/FormControl';
 
 const mapStateToProps = ( productState ) => ({
   ...productState
@@ -16,7 +15,6 @@ const mapStateToProps = ( productState ) => ({
 const mapDispatchToProps = (dispatch) => {  
   return {
     pushProduct: (newProduct) => {
-      // e.preventDefault()
       dispatch(addProduct(newProduct))
     }
   }
@@ -62,7 +60,6 @@ const SellPage = (props) => {
             />
             <TextField
               id="outlined-textarea"
-              // label="Price"
               placeholder="Price"
               multiline
               InputProps={{

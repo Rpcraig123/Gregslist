@@ -22,8 +22,6 @@ const mapStateToProps = ( productState, userState ) => ({
 
 const mapDispatchToProps = (dispatch) => {  
   return {
-    // delProductDet: (id) => dispatch(remProduct(id)),
-    // saveProductDet: (product) => dispatch(saveEditState(product))
     getComments: (id) => dispatch(fetchComments(id)),
     postComment: (data, id) => dispatch(addComment(data, id)),
     addCart: (user, productId) => dispatch(addToCart(user, productId))
@@ -93,12 +91,6 @@ const ProductDetails = (props) => {
           title={props.productState.productData.title}
           subheader={"Price $" + props.productState.productData.price}
         />
-        {/* <CardMedia
-          component="img"
-          height="194"
-          image="/static/images/cards/paella.jpg"
-          alt="Paella dish"
-        /> */}
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {"Description: " + props.productState.productData.description}
@@ -108,8 +100,6 @@ const ProductDetails = (props) => {
           <IconButton color="primary" aria-label="add to shopping cart">
             <AddShoppingCartIcon onClick={(e) => addCartProduct(e, props.productState.productData.id)}/>
           </IconButton>
-          {/* <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, props.productState.productData._id)}>Delete Item</Button>
-          <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, props.productState.productData.title, props.productState.productData.description, props.productState.productData.price, props.productState.productData._id)}>Update Item</Button> */}
         </CardActions>
       </Card>
       <Box onSubmit={handleSubmit} component="form" sx={{ '& .MuiTextField-root': { m: 2, width: '25ch' }, }} noValidate autoComplete="off" >
@@ -117,14 +107,10 @@ const ProductDetails = (props) => {
         <Button size="small" type="submit" color="secondary" variant="outlined">Post Comment</Button>
       </Box>
       <h2>Comments</h2>
-      {/* <p>{props.productState.comments}</p> */}
       {props.productState.comments ?
         props.productState.comments.map((comment, index) => (
           <Card sx={{ maxWidth: '400px' }}>
             <CardContent>
-              {/* <Typography variant="h5" component="div">
-                {props.userState.user.username}
-              </Typography> */}
               <Typography variant="body2">
                 <p key={index}>{comment}</p>
               </Typography>

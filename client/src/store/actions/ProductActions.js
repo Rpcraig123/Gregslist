@@ -82,7 +82,6 @@ export const addToCart = (data, id) => {
   return async (dispatch) => {
     try {
       const product = await addProductCart(data, id)
-      // dispatch({ type: ADD_COMMENT, payload: comment })
     } catch (error) {
       throw error
     }

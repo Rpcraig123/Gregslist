@@ -43,6 +43,11 @@ Click on the link at the top of the ReadMe that says "Deployement Link". After y
 - [ ] Incorporate a pick up function that will use the geolocation of the seller to arrange a pickup for the product.
 - [ ] UX Improvements, specifically modals to help direct the user.
 - [ ] Updates to the comment section that will include the user that posted the comment.
-
+- [ ] Updates to the cart page (quantity of items, fake purchase link, and give the user the option to remove an item from the cart).
 ---
+
+**_Credits_**
+
+- utilized styling from Damilola Adedoyin Ezekiel at Javascript works for the nav bar
+  article: https://javascript.works-hub.com/learn/how-to-create-a-responsive-navbar-using-material-ui-and-react-router-f9a01
 

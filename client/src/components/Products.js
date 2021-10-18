@@ -6,10 +6,8 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-// import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-// import { red } from '@mui/material/colors';
 import AddShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -79,12 +77,6 @@ const Products = (props) => {
                   title={product.title}
                   subheader={"Price $" + product.price}
                 /></a>
-                {/* <CardMedia
-                  component="img"
-                  height="194"
-                  image="/static/images/cards/paella.jpg"
-                  alt="Paella dish"
-                /> */}
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
                     {"Description: " + product.description}
