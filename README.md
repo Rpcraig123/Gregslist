@@ -6,11 +6,19 @@
 
 [Git](https://github.com/Rpcraig123/Gregslist) | [Trello](https://trello.com/b/fUZgCLGL/gregslist)
 
+![Home Page](./images/Home_Screenshot.PNG)
+
 ---
 
 **_Description_**
 
-An ecommerce site for people to sell their belongings.
+An ecommerce site for people to sell their belongings. Built using react-redux.
+
+---
+
+**_Getting Started_**
+
+Click on the link at the top of the ReadMe that says "Deployement Link". After you are redirected, you can create an account, then sign in and start exploring Gregslist.
 
 ---
 
@@ -23,35 +31,18 @@ An ecommerce site for people to sell their belongings.
 - Node
 - Heroku
 - Material-UI
-- OAuth
-
----
-
-**_Component Heirarchy Diagram_**
-
-![Component Heirarchy Diagram](./images/CHD.PNG)
-
----
-
-**_Entity Relationship diagram_**
-
-![Entity Relationship Diagram](./images/ERD.PNG)
 
 ---
 
 **_Future Updates_**
 
-- [ ] Build the database and learn how to autopopulate info with the user that is currently signed in.
-- [ ] Build backend routes and test.
-- [ ] Design and build front end .
-- [ ] Build and test front end routes.
-- [ ] Incorporate OAuth.
-- [ ] Incorporate material UI components.
-- [ ] Custom CSS.
-- [ ] UX Improvements.
-- [ ] Look into Mapbox features.
-- [ ] Optimize and clean code.
-- [ ] Deploy on heroku.
+- [ ] Will eventually allow the user to add a picture of the product they are selling.
+- [ ] OAuth incorporation.
+- [ ] Update the design.
+- [ ] Make the styling compatible with mobile display sizes.
+- [ ] Incorporate a pick up function that will use the geolocation of the seller to arrange a pickup for the product.
+- [ ] UX Improvements, specifically modals to help direct the user.
+- [ ] Updates to the comment section that will include the user that posted the comment.
 
 ---
 
