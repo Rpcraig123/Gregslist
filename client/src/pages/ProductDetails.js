@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchComments, addComment } from '../store/actions/ProductActions'
-// import { useHistory } from "react-router";
+import { fetchComments, addComment, addToCart } from '../store/actions/ProductActions'
+import { useHistory } from "react-router";
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -25,30 +25,41 @@ const mapDispatchToProps = (dispatch) => {
     // delProductDet: (id) => dispatch(remProduct(id)),
     // saveProductDet: (product) => dispatch(saveEditState(product))
     getComments: (id) => dispatch(fetchComments(id)),
-    postComment: (data, id) => dispatch(addComment(data, id))
+    postComment: (data, id) => dispatch(addComment(data, id)),
+    addCart: (user, productId) => dispatch(addToCart(user, productId))
   }
 }
 
 const ProductDetails = (props) => {
 
-  // const history = useHistory();
+  const history = useHistory();
 
-  // const deleteProduct = (e, id) => {
-  //   e.preventDefault();
-  //   props.delProductDet(id);
-  // };
+  const deleteProduct = (e, id) => {
+    e.preventDefault();
+    props.delProductDet(id);
+  };
   
-  // const saveProduct = (e, title, description, price, id, link) => {
-  //   e.preventDefault();
-  //   let productData = {
-  //     id,
-  //     title,
-  //     description,
-  //     price
-  //   };
-  //   history.push(`/product-details`);
-  //   props.saveProductDet(productData);
-  // };
+  const saveProduct = (e, title, description, price, id, link) => {
+    e.preventDefault();
+    let productData = {
+      id,
+      title,
+      description,
+      price
+    };
+    history.push(`/product-details`);
+    props.saveProductDet(productData);
+  };
+
+  const addCartProduct = (e, id) => {
+    e.preventDefault();
+    const userId = props.userState.user.id
+    let userData = {
+      userId
+    }
+    props.addCart(userData, id);
+    alert('item added to cart')
+  }
 
   const [description, setFormValues] = useState('')
   const [request, changeIt] = useState(false)
@@ -94,11 +105,8 @@ const ProductDetails = (props) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
           <IconButton color="primary" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
+            <AddShoppingCartIcon onClick={(e) => addCartProduct(e, props.productState.productData.id)}/>
           </IconButton>
           {/* <Button size="small" color="error" variant="outlined" onClick={(e) => deleteProduct(e, props.productState.productData._id)}>Delete Item</Button>
           <Button size="small" color="warning" variant="outlined" onClick={(e) => saveProduct(e, props.productState.productData.title, props.productState.productData.description, props.productState.productData.price, props.productState.productData._id)}>Update Item</Button> */}

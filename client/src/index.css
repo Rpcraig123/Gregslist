@@ -21,3 +21,8 @@ code {
   display: flex;
   flex-wrap: wrap;
 }
+
+.flex-container-form{
+  display: flex;
+  flex-direction: column;
+}
