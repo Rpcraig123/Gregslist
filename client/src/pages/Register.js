@@ -81,18 +81,18 @@ export default function Register(props) {
             onChange={handleChange}
           />
           <TextField
+            type="password"
             id="outlined-textarea"
             name="password"
-            type="password"
             label="password"
             placeholder="password"
             multiline
             onChange={handleChange}
           />
           <TextField
+            type="password"
             id="outlined-textarea"
             name="confirmPassword"
-            type="password"
             label="confirm password"
             placeholder="confirm password"
             multiline
