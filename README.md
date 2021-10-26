@@ -4,7 +4,7 @@
 
 #### By: Ryan Craig
 
-[Git](https://github.com/Rpcraig123/Gregslist) | [Trello](https://trello.com/b/fUZgCLGL/gregslist)
+[Trello](https://trello.com/b/fUZgCLGL/gregslist)
 
 ![Home Page](./images/Home_Screenshot.PNG)
 
