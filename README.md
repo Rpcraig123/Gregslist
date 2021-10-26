@@ -4,7 +4,7 @@
 
 #### By: Ryan Craig
 
-[Trello](https://trello.com/b/fUZgCLGL/gregslist)
+[LinkedIn](https://www.linkedin.com/in/ryancraigeit/) | [Trello](https://trello.com/b/fUZgCLGL/gregslist)
 
 ![Home Page](./images/Home_Screenshot.PNG)
 
